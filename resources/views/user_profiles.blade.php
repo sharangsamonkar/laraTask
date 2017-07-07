@@ -1,3 +1,11 @@
+<?php
+  if(!isset($_GET{'page'})) {
+    $page = 1;
+  }
+  else {
+    $page = $_GET{'page'};
+  }
+?>
 <!DOCTYPE html>
 <html lang = "en">
 
@@ -13,31 +21,44 @@
     <table class="table table-hover">
       <thead class="thead-inverse">
         <tr>
+          <th>ID</th>
           <th>Name</th>
-          <th>Email</th>
           <th>Age</th>
           <th>DOB</th>
+          <th>Country</th>
+          <th>Email</th>
         </tr>
       </thead>
       <tr>
-        <td>Lionel Messi</td>
-        <td>messi@fcb.com</td>
-        <td>30</td>
-        <td>01-01-1987</td>
-      </tr>
-      <tr>
-        <td>Cristiano Ronaldo</td>
-        <td>ronaldo@rm.com</td>
-        <td>33</td>
-        <td>01-01-1984</td>
-      </tr>
-      <tr>
-        <td>Paul Pogba</td>
-        <td>pogba@mufc.com</td>
-        <td>24</td>
-        <td>01-01-1993</td>
+        <?php
+        if($count != 1) {
+            $end = $page * 10;
+            if($end > $count)
+              $end = $count;
+            for($i = ($page-1)*10;$i < $end ;$i++) {
+              echo '<tr><td>'.$ud[$i]->id.'</td><td>'.$udp[$i]->name.'</td><td>'.$udp[$i]->age.'</td><td>'.$udp[$i]->dob.'</td><td>'.$udp[$i]->country.'</td><td>'.$ud[$i]->email.'</tr>';
+            }
+        }
+        else {
+          echo '<tr><td>'.$ud->id.'</td><td>'.$udp->name.'</td><td>'.$udp->age.'</td><td>'.$udp->dob.'</td><td>'.$udp->country.'</td><td>'.$ud->email.'</tr>';
+        }
+        ?>
       </tr>
     </table>
+    <nav>
+      <ul class="pagination">
+        <?php
+          $pages = ceil($count/10);
+          echo '<li class="page-item">';
+          for($i = 0;$i < $pages;$i++) {
+            echo '<a href="?page='.($i+1).'" class="page-link">'.($i+1).'</a>';
+          }
+          echo '</li>';
+        ?>
+      </ul>
+    </nav>
+    <nav aria-label="Page navigation example">
+</nav>
 
     <!-- jQuery library -->
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
