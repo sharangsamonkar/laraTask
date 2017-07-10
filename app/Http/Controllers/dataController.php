@@ -10,7 +10,11 @@ class dataController extends Controller
 {
     //
     public function index() {
-      return view('index');
+      $ud = user_data::all();
+      $udp = user_profile::all();
+      $count = user_data::all()->count();
+
+      return view('user_profiles',compact('ud','udp','count'));
     }
 
     public function create() {
@@ -27,8 +31,13 @@ class dataController extends Controller
       $ud->password = $request->input('password');
       $udp->id = $request->input('id');
       $udp->name = $request->input('name');
-      $udp->age = $request->input('age');
+
       $udp->dob = $request->input('dob');
+
+      $dofb = strtotime($udp->dob);
+      $dofb = date('Y-m-d',$dofb);
+
+      $udp->age = (date_diff(date_create($dofb),date_create('today')))->format("%Y");
       $udp->country = $request -> input('country');
 
       $ud->save();
@@ -50,18 +59,12 @@ class dataController extends Controller
     }
 
     public function update(Request $request,$id) {
-
+      $udp = user_profile::find($id);
+      $udp->age = $request->age;
+      $udp->save();
     }
 
     public function destroy($id) {
 
-    }
-
-    public function showAll() {
-      $ud = user_data::all();
-      $udp = user_profile::all();
-      $count = user_data::all()->count();
-
-      return view('user_profiles',compact('ud','udp','count'));
     }
 }

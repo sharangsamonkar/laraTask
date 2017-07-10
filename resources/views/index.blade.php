@@ -11,11 +11,11 @@
   <body>
     <div class="container-fluid">
       <div class="row">
-        <div class="col-3">
+        <div class="col-2">
           <a href="/user_profiles"><button class="btn btn-primary">User Profiles</button></a>
         </div>
-        <div class="col-3">
-          <a href="/data/create" <button class="btn btn-primary">Insert Data</button></a>
+        <div class="col-2">
+          <a href="/user_profiles/create" <button class="btn btn-primary">Insert Data</button></a>
         </div>
       </div>
     </div>

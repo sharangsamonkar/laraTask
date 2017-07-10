@@ -17,7 +17,7 @@ class CreateUserProfilesTable extends Migration
             $table->increments('id');
             $table->string('name',20);
             $table->integer('age');
-            $table->string('dob');
+            $table->date('dob');
             $table->string('country',20);
         });
     }

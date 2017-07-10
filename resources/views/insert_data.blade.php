@@ -10,7 +10,7 @@
 
   <body>
     <div class="container-fluid">
-      <form action="/data" method="post">
+      <form action="/user_profiles" method="post">
         <input type = "hidden" name = "_token" value = "<?php echo csrf_token(); ?>">
         <table class="table">
           <tr>
@@ -30,12 +30,8 @@
             <td><input type="text" name="name"/></td>
           </tr>
           <tr>
-            <td>Age: </td>
-            <td><input type="text" name="age"/></td>
-          </tr>
-          <tr>
             <td>DOB: </td>
-            <td><input type="text" name="dob"/></td>
+            <td><input type="date" name="dob"/></td>
           </tr>
           <tr>
             <td>Country: </td>

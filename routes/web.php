@@ -12,12 +12,12 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
-Route::get('user_profiles','dataController@showAll');
+//Route::get('user_profiles','dataController@showAll');
 
-Route::get('user_profiles/{id}','dataController@show');
+//Route::get('user_profiles/{id}','dataController@show');
 /*Route::get('user_profiles', function() {
   return view('user_profiles');
 });*/
@@ -25,4 +25,4 @@ Route::get('user_profiles/{id}','dataController@show');
 //Route::get('insert_data','insertController@insertForm');
 //Route::post('create','insertController@insert');
 
-Route::resource('data','dataController');
+Route::resource('user_profiles','dataController');

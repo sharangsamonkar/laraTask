@@ -14,6 +14,9 @@
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- ajax function -->
+    <!-- <script src={{asset('js/editContent.js')}}></script> -->
+
   </head>
 
   <body>
@@ -36,11 +39,11 @@
             if($end > $count)
               $end = $count;
             for($i = ($page-1)*10;$i < $end ;$i++) {
-              echo '<tr><td>'.$ud[$i]->id.'</td><td>'.$udp[$i]->name.'</td><td>'.$udp[$i]->age.'</td><td>'.$udp[$i]->dob.'</td><td>'.$udp[$i]->country.'</td><td>'.$ud[$i]->email.'</tr>';
+              echo '<tr><td>'.$ud[$i]->id.'</td><td>'.$udp[$i]->name.'</td><td contenteditable="true" onBlur="update(this,'.$udp[$i]->id.')">'.$udp[$i]->age.'</td><td>'.$udp[$i]->dob.'</td><td>'.$udp[$i]->country.'</td><td>'.$ud[$i]->email.'</td></tr>';
             }
         }
         else {
-          echo '<tr><td>'.$ud->id.'</td><td>'.$udp->name.'</td><td>'.$udp->age.'</td><td>'.$udp->dob.'</td><td>'.$udp->country.'</td><td>'.$ud->email.'</tr>';
+          echo '<tr><td>'.$ud->id.'</td><td>'.$udp->name.'</td><td contenteditable="true" onBlur="update(this,'.$udp->id.')">'.$udp->age.'</td><td>'.$udp->dob.'</td><td>'.$udp->country.'</td><td>'.$ud->email.'</td></tr>';
         }
         ?>
       </tr>
@@ -57,11 +60,14 @@
         ?>
       </ul>
     </nav>
-    <nav aria-label="Page navigation example">
-</nav>
+
+    <!-- Ajax jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+    <script src="{{asset('js/ajax-crud.js')}}"></script>
 
     <!-- jQuery library -->
-    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script> -->
 
     <!-- Tether -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
