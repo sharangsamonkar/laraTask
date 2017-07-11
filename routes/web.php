@@ -25,4 +25,7 @@ Route::get('/', function () {
 //Route::get('insert_data','insertController@insertForm');
 //Route::post('create','insertController@insert');
 
+Route::get('/user_profiles/order','dataController@order');
+Route::post('/user_profiles/search','dataController@search');
+
 Route::resource('user_profiles','dataController');
