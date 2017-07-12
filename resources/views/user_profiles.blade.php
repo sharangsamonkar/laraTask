@@ -24,10 +24,10 @@
   </head>
 
   <body>
-    <!-- record updated message -->
-    <div class="alert alert-success alert-dismissible fade show" role="alert" style="display:none">
+    <!-- message -->
+    <div class="alert alert-success alert-dismissible fade show" role="alert" style="display:none;position:fixed">
       <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-      Record successfully updated!
+      <span id="msg_content">Record successfully updated!</span>
     </div>
     <!-- user data table -->
     <table class="table table-hover">
@@ -52,7 +52,7 @@
             <tr>
               <td>{{$userd[$i]->id}}</td>
               <td>{{$userd[$i]->name}}</td>
-              <td>{{date_diff(date_create(date('Y-m-d',strtotime($userd[$i]->dob))),date_create('today'))->format("%Y")}}</td>
+              <td id={{$userd[$i]->id}}>{{date_diff(date_create(date('Y-m-d',strtotime($userd[$i]->dob))),date_create('today'))->format("%Y")}}</td>
               <td contenteditable="true" onBlur="update(this,{{$userd[$i]->id}})">{{$userd[$i]->dob}}</td>
               <td>{{$userd[$i]->country}}</td>
               <td>{{$userd[$i]->email}}</td>
@@ -100,7 +100,7 @@
       </div>
       <form action="/user_profiles/search" method="get">
         <input type="text" class="col-10" name="query" />
-        <input type="submit" value="Submit" />
+        <input type="submit" value="Submit" class="btn btn-default"/>
       </form>
     </div>
 

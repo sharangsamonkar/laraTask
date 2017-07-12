@@ -8,4 +8,6 @@ class user_profile extends Model
 {
     //
     public $timestamps = false;
+
+    protected $fillable = ['id','name','dob','country'];
 }

@@ -26,24 +26,27 @@ class dataController extends Controller
 
     public function store(Request $request) {
       //model objects
-      $ud = new user_data;
-      $udp = new user_profile;
+      // $ud = new user_data;
+      // $udp = new user_profile;
 
-      $ud->id = $request->input('id');
-      $ud->email = $request->input('email');
-      $ud->password = $request->input('password');
-      $udp->id = $request->input('id');
-      $udp->name = $request->input('name');
-      $udp->dob = $request->input('dob');
+      // $ud->id = $request->input('id');
+      // $ud->email = $request->input('email');
+      // $ud->password = $request->input('password');
+      // $udp->id = $request->input('id');
+      // $udp->name = $request->input('name');
+      // $udp->dob = $request->input('dob');
+      //
+      // $dofb = strtotime($udp->dob);
+      // $dofb = date('Y-m-d',$dofb);
+      // $udp->age = (date_diff(date_create($dofb),date_create('today')))->format("%Y");
+      //
+      // $udp->country = $request -> input('country');
 
-      $dofb = strtotime($udp->dob);
-      $dofb = date('Y-m-d',$dofb);
-      $udp->age = (date_diff(date_create($dofb),date_create('today')))->format("%Y");
-
-      $udp->country = $request -> input('country');
+      $ud = user_data::create(['id' => $request->input('id'),'email' => $request->input('email'),'password' => $request->input('password')]);
+      $udp = user_profile::create(['id' => $request->input('id'),'name' => $request->input('name'),'dob' => $request->input('dob'),'country' => $request->input('country')]);
 
       $ud->save();
-      $udp->save();
+      // $udp->save();
 
       echo 'Record inserted successfully!';
     }
