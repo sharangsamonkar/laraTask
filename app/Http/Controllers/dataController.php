@@ -90,7 +90,6 @@ class dataController extends Controller
     public function agesort(Request $request) {
       $op = $request->age_grp;
       $limits = explode(',',$op);
-      echo $limits[0]." ".$limits[1];
       $userd = DB::table('user_datas')
                   ->join('user_profiles','user_datas.id','=','user_profiles.id')
                   ->select('user_datas.email','user_profiles.*')
@@ -102,16 +101,13 @@ class dataController extends Controller
     }
 
     public function search(Request $request) {
-      $name = $request->query;
-      // $name = "Lionel";
+      $name = $request->input('query');
       $userd = DB::table('user_datas')
                   ->join('user_profiles','user_datas.id','=','user_profiles.id')
                   ->select('user_datas.email','user_profiles.*')
                   ->where('user_profiles.name','LIKE','%'.$name.'%')
                   ->get();
       $count = count($userd);
-      // echo $name;
-      // echo $userd;
       return view('user_profiles',compact('userd','count'));
     }
 }

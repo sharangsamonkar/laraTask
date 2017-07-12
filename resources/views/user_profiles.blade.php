@@ -1,10 +1,16 @@
 <?php
-  if(!isset($_GET{'page'})) {
+  if(!isset($_GET{'page'}))
     $page = 1;
-  }
-  else {
+  else
     $page = $_GET{'page'};
+  //for paginating after filtering
+  if(isset($_GET{'age_grp'}))
+  {
+    $age_grp = $_GET{'age_grp'};
+    $l = explode(',',$age_grp);
   }
+  else
+    $l = [0,100];
 ?>
 <!DOCTYPE html>
 <html lang = "en">
@@ -71,7 +77,7 @@
           @if($pages > 1)
             @for($i = 0;$i < $pages;$i++)
             <li class="page-item">
-              <a href="?page={{$i+1}}" class="page-link">{{$i+1}}</a>
+              <a href="?page={{$i+1}}&age_grp={{$l[0]}}%2C{{$l[1]}}" class="page-link">{{$i+1}}</a>
             </li>
             @endfor
           @endif
@@ -92,8 +98,8 @@
       <div class="col-1">
         Search
       </div>
-      <form action="/user_profiles/search" method="POST">
-        <input type="text" id="search" class="col-10" name="query" />
+      <form action="/user_profiles/search" method="get">
+        <input type="text" class="col-10" name="query" />
         <input type="submit" value="Submit" />
       </form>
     </div>

@@ -26,7 +26,7 @@ Route::get('/', function () {
 //Route::post('create','insertController@insert');
 
 Route::get('/user_profiles/order','dataController@order');
-Route::post('/user_profiles/search','dataController@search');
+Route::get('/user_profiles/search','dataController@search');
 Route::get('/user_profiles/agesort','dataController@agesort');
 
 Route::resource('user_profiles','dataController');
