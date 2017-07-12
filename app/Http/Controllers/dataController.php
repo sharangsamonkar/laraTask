@@ -49,11 +49,17 @@ class dataController extends Controller
     }
 
     public function show($id) {
-      $ud = user_data::find($id);
-      $udp = user_profile::find($id);
-      $count = user_data::where('id',$id)->count();
+      // $ud = user_data::find($id);
+      // $udp = user_profile::find($id);
+      // $count = user_data::where('id',$id)->count();
 
-      return view('user_profiles',compact('ud','udp','count'));
+      $userd = DB::table('user_datas')
+                  ->join('user_profiles','user_datas.id','=','user_profiles.id')
+                  ->select('user_datas.email','user_profiles.*')
+                  ->where('user_datas.id','=',$id)
+                  ->get();
+      $count = count($userd);
+      return view('user_profiles',compact('userd','count'));
     }
 
     public function edit($id) {
@@ -84,6 +90,7 @@ class dataController extends Controller
     public function agesort(Request $request) {
       $op = $request->age_grp;
       $limits = explode(',',$op);
+      echo $limits[0]." ".$limits[1];
       $userd = DB::table('user_datas')
                   ->join('user_profiles','user_datas.id','=','user_profiles.id')
                   ->select('user_datas.email','user_profiles.*')
@@ -91,21 +98,20 @@ class dataController extends Controller
                   ->where(DB::raw('datediff(curdate(),user_profiles.dob)'),'<', $limits[1] * 365)
                   ->get();
       $count = count($userd);
-
       return view('user_profiles',compact('userd','count'));
     }
 
     public function search(Request $request) {
       $name = $request->query;
-      $name1 = "Lionel";
+      // $name = "Lionel";
       $userd = DB::table('user_datas')
                   ->join('user_profiles','user_datas.id','=','user_profiles.id')
                   ->select('user_datas.email','user_profiles.*')
                   ->where('user_profiles.name','LIKE','%'.$name.'%')
                   ->get();
       $count = count($userd);
-      echo $name;
-      echo $userd;
+      // echo $name;
+      // echo $userd;
       return view('user_profiles',compact('userd','count'));
     }
 }

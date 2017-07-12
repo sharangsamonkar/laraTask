@@ -97,9 +97,6 @@
         <input type="submit" value="Submit" />
       </form>
     </div>
-    <!-- hints -->
-    <!-- <div class="row" id="hints" style="display:none">
-    </div> -->
 
     <!-- Ajax jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
