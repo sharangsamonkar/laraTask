@@ -12,6 +12,8 @@ use App\financeInfo;
 use App\genderInfo;
 use App\personalInfo;
 
+use App\Jobs\importCSV;
+
 class csvController extends Controller
 {
     public function index() {
@@ -33,12 +35,21 @@ class csvController extends Controller
         $mi = explode('/',$row[4]);
         $ei = emailInfo::create(['id' => $row[0],'first' => $row[1],'last' => $row[2],'email' => $row[6]]);
         $pi = personalInfo::create(['id' => $row[0],'age' => $row[3][0].'0s','dob' => $month[$mi[0] - 1],'gender' => $row[5]]);
-        $fi = financeInfo::create(['id' => $row[0],'state' => $row[7].'0s','phone' => $row[8],'dollar' => $row[9]]);
-        $gi = genderInfo::create(['id' => $row[0],'first' => $row[1].'0s','last' => $row[2],'gender' => $row[5]]);
+        $fi = financeInfo::create(['id' => $row[0],'state' => $row[7],'phone' => $row[8],'dollar' => $row[9]]);
+        $gi = genderInfo::create(['id' => $row[0],'first' => $row[1],'last' => $row[2],'gender' => $row[5]]);
         $ei->save();
         $pi->save();
         $fi->save();
         $gi->save();
       }
+
+      // $this->dispatch(new importCSV($csv_path));
+      // return view('uploadFile');
+    }
+
+    public function displayTable(Request $request) {
+
+
+      return view('displayCSV');
     }
 }

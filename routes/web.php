@@ -27,6 +27,7 @@ Route::get('/', function () {
 
 Route::get('/csv','csvController@index');
 Route::post('/csv/upload','csvController@upload');
+Route::get('/csv/display','csvController@displayTable');
 
 Route::get('/user_profiles/order','dataController@order');
 Route::get('/user_profiles/search','dataController@search');
