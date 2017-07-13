@@ -46,7 +46,7 @@ class dataController extends Controller
       $udp = user_profile::create(['id' => $request->input('id'),'name' => $request->input('name'),'dob' => $request->input('dob'),'country' => $request->input('country')]);
 
       $ud->save();
-      // $udp->save();
+      $udp->save();
 
       echo 'Record inserted successfully!';
     }

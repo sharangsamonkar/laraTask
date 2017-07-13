@@ -25,6 +25,9 @@ Route::get('/', function () {
 //Route::get('insert_data','insertController@insertForm');
 //Route::post('create','insertController@insert');
 
+Route::get('/csv','csvController@index');
+Route::post('/csv/upload','csvController@upload');
+
 Route::get('/user_profiles/order','dataController@order');
 Route::get('/user_profiles/search','dataController@search');
 Route::get('/user_profiles/agesort','dataController@agesort');

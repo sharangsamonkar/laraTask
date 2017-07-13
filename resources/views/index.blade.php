@@ -17,6 +17,9 @@
         <div class="col-2">
           <a href="/user_profiles/create" <button class="btn btn-primary">Insert Data</button></a>
         </div>
+        <div class="col-2">
+          <a href="/csv" <button class="btn btn-primary">CSV import</button></a>
+        </div>
       </div>
     </div>
 
