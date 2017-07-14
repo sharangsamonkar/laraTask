@@ -8,6 +8,6 @@ class financeInfo extends Model
 {
     //
     public $timestamps = false;
-    
+
     protected $fillable = ['id','state','phone','dollar'];
 }
