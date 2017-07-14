@@ -38,6 +38,7 @@ class importFile implements ShouldQueue
      public function handle()
      {
          //
+         echo "hello";
          $results = $this->reader->fetch();
          $first = true;  //to ignore the first record
          foreach($results as $row) {
