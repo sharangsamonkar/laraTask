@@ -26,7 +26,7 @@ class csvController extends Controller
 
     public function upload(Request $request) {
       $csv_path = $request->file('file')->store('csv');
-      $reader = Reader::createFromPath('/home/aj-sharangsa/laraTask/storage/app/'.$csv_path);
+      $reader = Reader::createFromPath('/home/aj-sharang/laraTask/storage/app/'.$csv_path);
       // $results = $reader->fetch();
       // $first = true;  //to ignore the first record
       // foreach($results as $row) {
@@ -60,7 +60,7 @@ class csvController extends Controller
                   ->limit(20)
                   ->offset(($page-1) * 20)
                   ->get();
-      echo $table;
-      //return view('displayCSV');
+      // echo $table;
+      return response()->json($table);
     }
 }
